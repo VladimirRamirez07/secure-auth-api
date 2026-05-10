@@ -2,6 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { connectDB } = require('./config/database');
+const { connectRedis } = require('./config/redis');
 
 dotenv.config();
 
@@ -15,7 +17,7 @@ app.use(cors({
 }));
 
 // ── Body Parsers ──────────────────────────────────────────────
-app.use(express.json({ limit: '10kb' })); // Limit body size (security)
+app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // ── Health Check ──────────────────────────────────────────────
@@ -47,6 +49,10 @@ app.use((err, req, res, next) => {
     message: err.message || 'Internal server error'
   });
 });
+
+// ── Connect to services ───────────────────────────────────────
+connectDB();
+connectRedis();
 
 // ── Start Server ──────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
