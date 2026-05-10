@@ -22,6 +22,8 @@ A production-ready REST API implementing authentication best practices and OWASP
 - ✅ **Security Headers** — Helmet.js for HTTP hardening
 - ✅ **CORS** — Configurable cross-origin resource sharing
 - ✅ **Role-based Authorization** — User and admin roles
+- ✅ **User Profile Management** — Update profile and change password
+- ✅ **Admin Panel** — List and manage users
 
 ## 🛠️ Tech Stack
 
@@ -83,6 +85,19 @@ node src/app.js
 | POST | `/api/2fa/verify` | Verify TOTP token | ✅ |
 | POST | `/api/2fa/disable` | Disable 2FA | ✅ |
 
+### User
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| GET | `/api/users/profile` | Get current user profile | ✅ |
+| PUT | `/api/users/profile` | Update username | ✅ |
+| PUT | `/api/users/change-password` | Change password | ✅ |
+
+### Admin
+| Method | Endpoint | Description | Auth |
+|---|---|---|---|
+| GET | `/api/admin/users` | List all users | ✅ Admin |
+| PUT | `/api/admin/users/:id/toggle` | Activate/deactivate user | ✅ Admin |
+
 ## 🔒 Security Features
 
 ### Brute Force Protection
@@ -97,7 +112,7 @@ Accounts are automatically locked after **5 failed login attempts** for **15 min
 
 ### Rate Limiting
 - **Global API**: 100 requests / 15 minutes
-- **Auth endpoints**: 10 requests / 15 minutes  
+- **Auth endpoints**: 10 requests / 15 minutes
 - **Register**: 5 requests / hour
 
 ### Password Policy
@@ -147,7 +162,9 @@ secure-auth-api/
 │   │   └── migrate.js
 │   ├── controllers/
 │   │   ├── auth.controller.js
-│   │   └── twoFactor.controller.js
+│   │   ├── twoFactor.controller.js
+│   │   ├── user.controller.js
+│   │   └── admin.controller.js
 │   ├── middlewares/
 │   │   ├── auth.middleware.js
 │   │   ├── validate.middleware.js
@@ -156,7 +173,9 @@ secure-auth-api/
 │   │   └── user.model.js
 │   ├── routes/
 │   │   ├── auth.routes.js
-│   │   └── twoFactor.routes.js
+│   │   ├── twoFactor.routes.js
+│   │   ├── user.routes.js
+│   │   └── admin.routes.js
 │   ├── services/
 │   │   └── twoFactor.service.js
 │   └── app.js
@@ -164,6 +183,7 @@ secure-auth-api/
 ├── docker-compose.yml
 └── package.json
 ```
+
 ## 📄 License
 
 MIT © [VladimirRamirez07](https://github.com/VladimirRamirez07)
