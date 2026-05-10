@@ -133,13 +133,15 @@ login_attempts
 ```
 
 ## 📁 Project Structure
+
+```
 secure-auth-api/
 ├── src/
 │   ├── config/
-│   │   ├── database.js      # PostgreSQL connection pool
-│   │   ├── redis.js         # Redis client
-│   │   ├── schema.sql       # Database schema
-│   │   └── migrate.js       # Migration runner
+│   │   ├── database.js
+│   │   ├── redis.js
+│   │   ├── schema.sql
+│   │   └── migrate.js
 │   ├── controllers/
 │   │   ├── auth.controller.js
 │   │   └── twoFactor.controller.js
@@ -158,6 +160,7 @@ secure-auth-api/
 ├── .env.example
 ├── docker-compose.yml
 └── package.json
+```
 ## 📄 License
 
 MIT © [VladimirRamirez07](https://github.com/VladimirRamirez07)
