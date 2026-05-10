@@ -4,6 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { connectDB } = require('./config/database');
 const { connectRedis } = require('./config/redis');
+const { apiLimiter } = require('./middlewares/rateLimit.middleware');
+const authRoutes = require('./routes/auth.routes');
 
 dotenv.config();
 
@@ -15,6 +17,7 @@ app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:3000',
   credentials: true
 }));
+app.use('/api', apiLimiter);
 
 // ── Body Parsers ──────────────────────────────────────────────
 app.use(express.json({ limit: '10kb' }));
@@ -31,8 +34,6 @@ app.get('/health', (req, res) => {
 });
 
 // ── Routes ────────────────────────────────────────────────────
-// (las iremos agregando aquí)
-const authRoutes = require('./routes/auth.routes');
 app.use('/api/auth', authRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────
