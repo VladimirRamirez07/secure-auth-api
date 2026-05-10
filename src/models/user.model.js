@@ -21,8 +21,8 @@ const UserModel = {
 
   async findById(id) {
     const query = `
-      SELECT id, email, username, role, is_active, two_factor_enabled, 
-             login_attempts, locked_until, created_at 
+      SELECT id, email, username, role, is_active, two_factor_enabled,
+             two_factor_secret, login_attempts, locked_until, created_at 
       FROM users WHERE id = $1
     `;
     const { rows } = await pool.query(query, [id]);
@@ -82,6 +82,24 @@ const UserModel = {
       VALUES ($1, $2, $3)
     `;
     await pool.query(query, [email, ipAddress, success]);
+  },
+
+  async enable2FA(userId, secret) {
+    const query = `
+      UPDATE users 
+      SET two_factor_secret = $1, two_factor_enabled = true, updated_at = NOW()
+      WHERE id = $2
+    `;
+    await pool.query(query, [secret, userId]);
+  },
+
+  async disable2FA(userId) {
+    const query = `
+      UPDATE users 
+      SET two_factor_secret = NULL, two_factor_enabled = false, updated_at = NOW()
+      WHERE id = $1
+    `;
+    await pool.query(query, [userId]);
   }
 
 };

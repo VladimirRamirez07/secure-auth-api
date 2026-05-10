@@ -6,6 +6,7 @@ const { connectDB } = require('./config/database');
 const { connectRedis } = require('./config/redis');
 const { apiLimiter } = require('./middlewares/rateLimit.middleware');
 const authRoutes = require('./routes/auth.routes');
+const twoFactorRoutes = require('./routes/twoFactor.routes');
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.get('/health', (req, res) => {
 
 // ── Routes ────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
+app.use('/api/2fa', twoFactorRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────
 app.use((req, res) => {
