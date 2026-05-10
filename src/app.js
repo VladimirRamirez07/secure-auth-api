@@ -7,6 +7,8 @@ const { connectRedis } = require('./config/redis');
 const { apiLimiter } = require('./middlewares/rateLimit.middleware');
 const authRoutes = require('./routes/auth.routes');
 const twoFactorRoutes = require('./routes/twoFactor.routes');
+const userRoutes = require('./routes/user.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 dotenv.config();
 
@@ -37,6 +39,8 @@ app.get('/health', (req, res) => {
 // ── Routes ────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/2fa', twoFactorRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 // ── 404 Handler ───────────────────────────────────────────────
 app.use((req, res) => {
