@@ -2,11 +2,14 @@
 
 A production-ready REST API implementing authentication best practices and OWASP security guidelines.
 
-![Node.js](https://img.shields.io/badge/Node.js-v24-green)
-![Express](https://img.shields.io/badge/Express-4.x-blue)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
-![Redis](https://img.shields.io/badge/Redis-7-red)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.x-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-7-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![OWASP](https://img.shields.io/badge/OWASP-Compliant-000000?style=for-the-badge&logo=owasp&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 ## 🚀 Features
 
